@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Quản Lý Bãi Đỗ Xe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2196F3;
+            --success-color: #4CAF50;
+            --danger-color: #f44336;
+            --warning-color: #FFA500;
+            --background-color: #f8f9fa;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e88e5, #1565c0);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            font-weight: 600;
+        }
+
+        .dashboard-stats {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        .stat-card i {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .camera-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .camera-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .camera-section h2 i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .camera-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .ip-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .ip-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #1976D2;
+            transform: translateY(-2px);
+        }
+
+        .camera-feed {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            object-fit: cover;
+            background: #f8f9fa;
+            margin-bottom: 20px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .status-indicator .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .status-dot.connected {
+            background: var(--success-color);
+        }
+
+        .status-dot.disconnected {
+            background: var(--danger-color);
+        }
+
+        .parking-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .parking-slot {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .parking-slot:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .parking-slot h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .parking-slot h3 i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .slot-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .slot-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .license-plate {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .entry-time {
+            color: #666;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+        }
+
+        .entry-time i {
+            margin-right: 8px;
+        }
+
+        .slot-empty {
+            border: 2px dashed #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            color: #666;
+        }
+
+        .slot-occupied {
+            border: 2px solid var(--success-color);
+        }
+
+        .clear-button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .clear-button:hover {
+            background: #d32f2f;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .parking-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .parking-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .stat-card {
+                width: 100%;
+                margin: 0;
+            }
+        }
+
+        .info-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .info-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-section h2 i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-card h4 {
+            color: #333;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card h4 i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 6px;
+            background: white;
+        }
+
+        .info-item i {
+            margin-right: 10px;
+            color: var(--primary-color);
+            width: 20px;
+            text-align: center;
+        }
+
+        .info-value {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .info-status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .status-free {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .status-occupied {
+            background: var(--danger-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-parking"></i> Hệ Thống Quản Lý Bãi Đỗ Xe</h1>
+        </div>
+
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <i class="fas fa-car"></i>
+                <h3>Tổng số chỗ</h3>
+                <p>6</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-parking"></i>
+                <h3>Chỗ trống</h3>
+                <p id="available-slots">5/6</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-history"></i>
+                <h3>Lịch sử</h3>
+                <a href="{{ url_for('parking_history') }}" class="btn btn-primary btn-sm">Xem</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="camera-section">
+                <h2><i class="fas fa-video"></i> Camera Quan Sát</h2>
+                <div class="camera-controls">
+                    <input type="text" id="camera-ip" class="ip-input" 
+                           placeholder="Nhập IP của ESP32-CAM (vd: 192.168.1.100)">
+                    <button class="btn btn-primary" onclick="connectCamera()">
+                        <i class="fas fa-link"></i> Kết nối
+                    </button>
+                </div>
+                
+                <div class="status-indicator">
+                    <div class="status-dot disconnected" id="status-dot"></div>
+                    <span id="connection-status">Chưa kết nối</span>
+                </div>
+
+                <img id="camera-feed" class="camera-feed" src="" alt="Camera Feed">
+                
+                <button class="btn btn-primary w-100" onclick="captureImage()" id="capture-btn" disabled>
+                    <i class="fas fa-camera"></i> Chụp Ảnh
+                </button>
+            </div>
+
+            <div class="info-section">
+                <h2><i class="fas fa-info-circle"></i> Thông Tin</h2>
+                
+                <div class="info-card">
+                    <h4><i class="fas fa-crosshairs"></i> Vị trí đang chọn</h4>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="selected-slot" class="info-value">Chưa chọn</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h4><i class="fas fa-chart-pie"></i> Thống kê</h4>
+                    <div class="info-item">
+                        <i class="fas fa-car"></i>
+                        <span>Xe đang đỗ:</span>
+                        <span id="occupied-count" class="info-value ms-auto">0</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-parking"></i>
+                        <span>Chỗ trống:</span>
+                        <span id="available-count" class="info-value ms-auto">6</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h4><i class="fas fa-clock"></i> Thời gian</h4>
+                    <div class="info-item">
+                        <i class="fas fa-calendar"></i>
+                        <span id="current-date" class="info-value">--/--/----</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="current-time" class="info-value">--:--:--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="parking-grid">
+            {% for slot_id, info in parking_slots.items() %}
+            <div class="parking-slot {{ 'slot-occupied' if info.status == 'occupied' else 'slot-empty' }}" 
+                 onclick="selectSlot('{{ slot_id }}')">
+                <h3><i class="fas fa-car"></i> Vị trí {{ slot_id.split('_')[1] }}</h3>
+                {% if info.image %}
+                    <img src="{{ url_for('static', filename='uploads/' + info.image) }}" 
+                         alt="Vehicle Image" class="slot-image">
+                    {% if info.license_plate %}
+                        <div class="slot-info">
+                            <div class="license-plate">
+                                <i class="fas fa-id-card"></i> {{ info.license_plate }}
+                            </div>
+                            <div class="entry-time">
+                                <i class="fas fa-clock"></i> {{ info.entry_time }}
+                            </div>
+                        </div>
+                    {% endif %}
+                    <button class="clear-button" onclick="clearSlot('{{ slot_id }}', event)">
+                        <i class="fas fa-trash"></i> Xóa
+                    </button>
+                {% else %}
+                    <div class="slot-empty">
+                        <i class="fas fa-car-side fa-2x"></i>
+                    </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let selectedSlot = null;
+        let ws = null;
+        let currentIpAddress = '';
+        let streamInterval = null;
+
+        function updateAvailableSlots() {
+            const total = document.querySelectorAll('.parking-slot').length;
+            const occupied = document.querySelectorAll('.slot-occupied').length;
+            document.getElementById('available-slots').textContent = `${total - occupied}/${total}`;
+        }
+
+        function updateSlotUI(slotId, data) {
+            const slot = document.querySelector(`.parking-slot[onclick*="${slotId}"]`);
+            if (!slot) {
+                console.error('Slot element not found:', slotId);
+                return;
+            }
+
+            console.log('Updating UI for slot:', slotId);
+            console.log('Received data:', data);
+
+            // Update slot status
+            slot.classList.remove('slot-empty');
+            slot.classList.add('slot-occupied');
+            
+            // Ensure image URL is correct
+            let imageUrl = data.image_url;
+            if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/')) {
+                imageUrl = '/' + imageUrl;
+            }
+            console.log('Using image URL:', imageUrl);
+
+            // Create temporary image to verify URL
+            const tempImg = new Image();
+            tempImg.onload = function() {
+                console.log('Test image loaded successfully:', imageUrl);
+                
+                // Clear existing content and update with verified image
+                slot.innerHTML = `
+                    <h3><i class="fas fa-car"></i> Vị trí ${slotId.split('_')[1]}</h3>
+                    <img src="${imageUrl}" alt="Vehicle Image" class="slot-image" 
+                         onerror="this.onerror=null; this.src=''; console.error('Failed to load image:', this.src);">
+                    <div class="slot-info">
+                        <div class="license-plate">
+                            <i class="fas fa-id-card"></i> ${data.license_plate || 'Không nhận diện được'}
+                        </div>
+                        <div class="entry-time">
+                            <i class="fas fa-clock"></i> ${data.entry_time}
+                        </div>
+                    </div>
+                    <button class="clear-button" onclick="clearSlot('${slotId}', event)">
+                        <i class="fas fa-trash"></i> Xóa
+                    </button>
+                `;
+
+                // Reset selection
+                selectedSlot = null;
+                document.getElementById('selected-slot').textContent = 'Chưa chọn';
+                
+                // Update available slots count
+                updateAvailableSlots();
+            };
+
+            tempImg.onerror = function() {
+                console.error('Failed to verify image URL:', imageUrl);
+                
+                // Update UI with error state
+                slot.innerHTML = `
+                    <h3><i class="fas fa-car"></i> Vị trí ${slotId.split('_')[1]}</h3>
+                    <p style="color: red;">Lỗi tải ảnh</p>
+                    <div class="slot-info">
+                        <div class="license-plate">
+                            <i class="fas fa-id-card"></i> ${data.license_plate || 'Không nhận diện được'}
+                        </div>
+                        <div class="entry-time">
+                            <i class="fas fa-clock"></i> ${data.entry_time}
+                        </div>
+                    </div>
+                    <button class="clear-button" onclick="clearSlot('${slotId}', event)">
+                        <i class="fas fa-trash"></i> Xóa
+                    </button>
+                `;
+
+                // Reset selection
+                selectedSlot = null;
+                document.getElementById('selected-slot').textContent = 'Chưa chọn';
+                
+                // Update available slots count
+                updateAvailableSlots();
+            };
+
+            // Start loading test image
+            tempImg.src = imageUrl;
+        }
+
+        function updateSlotAfterClear(slotId) {
+            const slot = document.querySelector(`.parking-slot[onclick*="${slotId}"]`);
+            if (!slot) return;
+
+            // Update slot status
+            slot.classList.remove('slot-occupied');
+            slot.classList.add('slot-empty');
+            
+            // Clear content
+            slot.innerHTML = `
+                <h3><i class="fas fa-car"></i> Vị trí ${slotId.split('_')[1]}</h3>
+                <div class="slot-empty">
+                    <i class="fas fa-car-side fa-2x"></i>
+                </div>
+            `;
+
+            // Update available slots count
+            updateAvailableSlots();
+        }
+
+        function selectSlot(slotId) {
+            console.log('Selecting slot:', slotId); // Debug log
+            
+            const slot = document.querySelector(`.parking-slot[onclick*="${slotId}"]`);
+            if (!slot) {
+                console.error('Slot element not found:', slotId);
+                return;
+            }
+            
+            if (slot.classList.contains('slot-occupied')) {
+                console.log('Cannot select occupied slot:', slotId);
+                return;
+            }
+            
+            // Remove previous selection
+            document.querySelectorAll('.parking-slot').forEach(s => {
+                s.style.border = s.classList.contains('slot-occupied') ? 
+                    '2px solid #f44336' : '2px solid #4CAF50';
+            });
+            
+            // Add new selection
+            slot.style.border = '3px solid #2196F3';
+            selectedSlot = slotId;
+            console.log('Selected slot updated:', selectedSlot); // Debug log
+            document.getElementById('selected-slot').textContent = `Vị trí ${slotId.split('_')[1]}`;
+        }
+
+        function connectCamera() {
+            const ipAddress = document.getElementById('camera-ip').value.trim();
+            if (!ipAddress) {
+                alert('Vui lòng nhập địa chỉ IP của ESP32-CAM');
+                return;
+            }
+
+            // Save IP address to localStorage
+            localStorage.setItem('lastCameraIP', ipAddress);
+            localStorage.setItem('cameraConnected', 'true');
+
+            // Close existing connection if any
+            if (ws) {
+                ws.close();
+            }
+
+            currentIpAddress = ipAddress;
+            const statusElement = document.getElementById('connection-status');
+            const captureBtn = document.getElementById('capture-btn');
+            const cameraFeed = document.getElementById('camera-feed');
+
+            // Update UI to show connecting state
+            statusElement.textContent = 'Đang kết nối...';
+            statusElement.style.color = '#FFA500';
+            captureBtn.disabled = true;
+            cameraFeed.src = '';
+
+            // Create new WebSocket connection
+            try {
+                ws = new WebSocket(`ws://${ipAddress}:81`);
+                
+                // Set connection timeout
+                const connectionTimeout = setTimeout(() => {
+                    if (ws.readyState !== WebSocket.OPEN) {
+                        ws.close();
+                        statusElement.textContent = 'Không thể kết nối đến camera - Timeout';
+                        statusElement.style.color = '#f44336';
+                        localStorage.setItem('cameraConnected', 'false');
+                        alert('Không thể kết nối đến camera. Vui lòng kiểm tra:\n1. Địa chỉ IP chính xác\n2. Camera đang hoạt động\n3. Camera và máy tính trong cùng mạng');
+                    }
+                }, 5000);
+
+                ws.onopen = () => {
+                    clearTimeout(connectionTimeout);
+                    statusElement.textContent = 'Đã kết nối';
+                    statusElement.style.color = '#4CAF50';
+                    captureBtn.disabled = false;
+                    localStorage.setItem('cameraConnected', 'true');
+                };
+
+                ws.onclose = () => {
+                    statusElement.textContent = 'Mất kết nối';
+                    statusElement.style.color = '#f44336';
+                    captureBtn.disabled = true;
+                    cameraFeed.src = '';
+                    localStorage.setItem('cameraConnected', 'false');
+                    
+                    // Only try to reconnect if we had a successful connection before
+                    if (ws.wasConnected) {
+                        setTimeout(() => {
+                            console.log('Đang thử kết nối lại...');
+                            connectCamera();
+                        }, 2000);
+                    }
+                };
+
+                ws.onerror = (error) => {
+                    console.error('WebSocket error:', error);
+                    statusElement.textContent = 'Lỗi kết nối';
+                    statusElement.style.color = '#f44336';
+                    captureBtn.disabled = true;
+                    cameraFeed.src = '';
+                };
+
+                ws.onmessage = (event) => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        if (data.type === 'camera_frame') {
+                            cameraFeed.src = 'data:image/jpeg;base64,' + data.image;
+                            ws.wasConnected = true; // Mark that we had a successful connection
+                        }
+                    } catch (e) {
+                        console.error('Error parsing WebSocket message:', e);
+                    }
+                };
+            } catch (error) {
+                console.error('Error creating WebSocket:', error);
+                statusElement.textContent = 'Lỗi kết nối';
+                statusElement.style.color = '#f44336';
+                localStorage.setItem('cameraConnected', 'false');
+                alert('Không thể tạo kết nối WebSocket. Vui lòng kiểm tra địa chỉ IP và thử lại.');
+            }
+        }
+
+        function captureImage() {
+            if (!selectedSlot) {
+                alert('Vui lòng chọn vị trí đỗ xe trước khi chụp ảnh');
+                return;
+            }
+
+            const cameraFeed = document.getElementById('camera-feed');
+            if (!cameraFeed.src) {
+                alert('Không có hình ảnh từ camera');
+                return;
+            }
+
+            console.log('Selected slot:', selectedSlot); // Debug log
+
+            // Wait for the image to be fully loaded
+            const img = new Image();
+            img.crossOrigin = "Anonymous";  // Enable CORS
+            img.onload = function() {
+                console.log('Image loaded for capture, dimensions:', img.width, 'x', img.height); // Debug log
+                
+                // Create a canvas to get the image data
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                
+                // Draw the image onto the canvas
+                try {
+                    ctx.drawImage(img, 0, 0);
+                    console.log('Image drawn to canvas successfully'); // Debug log
+                    
+                    // Get the image as base64
+                    const imageData = canvas.toDataURL('image/jpeg', 0.8);
+                    console.log('Image data length:', imageData.length); // Debug log
+                    
+                    const requestData = {
+                        slot: selectedSlot,
+                        image: imageData
+                    };
+                    
+                    console.log('Sending request with slot:', requestData.slot); // Debug log
+
+                    // Send image to server
+                    fetch('/upload', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(requestData)
+                    })
+                    .then(response => {
+                        console.log('Response status:', response.status); // Debug log
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Server response:', data); // Debug log
+                        if (data.success) {
+                            console.log('Image uploaded successfully:', data);
+                            // Update UI without page reload
+                            updateSlotUI(selectedSlot, data);
+                        } else {
+                            alert('Lỗi khi lưu ảnh: ' + (data.error || 'Không xác định'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Có lỗi xảy ra khi lưu ảnh');
+                    });
+                } catch (error) {
+                    console.error('Error drawing image to canvas:', error);
+                    alert('Có lỗi xảy ra khi xử lý ảnh');
+                }
+            };
+            
+            img.onerror = function() {
+                console.error('Error loading image for capture');
+                alert('Có lỗi xảy ra khi tải ảnh');
+            };
+            
+            // Set the source to trigger loading
+            img.src = cameraFeed.src;
+        }
+
+        function clearSlot(slotId, event) {
+            event.stopPropagation(); // Prevent slot selection when clicking clear button
+            
+            fetch(`/clear_slot/${slotId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Update UI without page reload
+                        updateSlotAfterClear(slotId);
+                    } else {
+                        alert('Có lỗi xảy ra khi xóa vị trí.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Có lỗi xảy ra khi xóa vị trí.');
+                });
+        }
+
+        // Initialize available slots count and restore camera connection
+        window.addEventListener('load', () => {
+            updateAvailableSlots();
+            
+            // Restore camera connection if it was connected before
+            const lastCameraIP = localStorage.getItem('lastCameraIP');
+            const wasConnected = localStorage.getItem('cameraConnected') === 'true';
+            
+            if (lastCameraIP && wasConnected) {
+                document.getElementById('camera-ip').value = lastCameraIP;
+                connectCamera();
+            }
+        });
+
+        function startStream() {
+            if (streamInterval) {
+                clearInterval(streamInterval);
+            }
+            
+            const rtspUrl = document.getElementById('camera-ip').value;
+            const streamElement = document.getElementById('camera-feed');
+            
+            streamInterval = setInterval(() => {
+                streamElement.src = `/video_feed?ip=${rtspUrl}&t=${new Date().getTime()}`;
+            }, 100);
+        }
+
+        document.getElementById('connect-btn').addEventListener('click', startStream);
+
+        function updateStatistics() {
+            alert('Fetching statistics...');
+            fetch('/get_statistics')
+                .then(response => response.json())
+                .then(data => {
+                    alert('Statistics data: ' + JSON.stringify(data));
+                    document.getElementById('occupied-count').textContent = data.occupied;
+                    document.getElementById('available-count').textContent = data.available;
+                })
+                .catch(error => console.error('Error fetching statistics:', error));
+        }
+
+        function updateDateTime() {
+            alert('Updating date and time...');
+            const now = new Date();
+            const date = now.toLocaleDateString();
+            const time = now.toLocaleTimeString();
+            document.getElementById('current-date').textContent = date;
+            document.getElementById('current-time').textContent = time;
+        }
+
+        setInterval(() => {
+            updateStatistics();
+            updateDateTime();
+        }, 1000);
+
+        window.onload = function() {
+            updateStatistics();
+            updateDateTime();
+        };
+    </script>
+</body>
+</html> 
