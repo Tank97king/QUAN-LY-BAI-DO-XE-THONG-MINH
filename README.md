@@ -1,3 +1,25 @@
+<h1 align="center">🚗 HỆ THỐNG QUẢN LÝ BÃI ĐỖ XE VỚI NHẬN DIỆN BIỂN SỐ </h1>
+
+<div align="center">
+
+<p align="center">
+  <img src="images/logoDaiNam.png" alt="DaiNam University Logo" width="200"/>
+  <img src="images/LogoAIoTLab.png" alt="AIoTLab Logo" width="170"/>
+</p>
+
+[![Made by AIoTLab](https://img.shields.io/badge/Made%20by%20AIoTLab-blue?style=for-the-badge)](https://www.facebook.com/DNUAIoTLab)
+[![Fit DNU](https://img.shields.io/badge/Fit%20DNU-green?style=for-the-badge)](https://fitdnu.net/)
+[![DaiNam University](https://img.shields.io/badge/DaiNam%20University-red?style=for-the-badge)](https://dainam.edu.vn)
+
+</div>
+
+<h2 align="center">🚗 HỆ THỐNG QUẢN LÝ BÃI ĐỖ XE </h2>
+
+<p align="left">
+  Hệ thống quản lý bãi đỗ xe tích hợp nhận diện biển số xe tự động, với giao diện web hiện đại để quản lý bãi đỗ một cách dễ dàng và hiệu quả. Dữ liệu điểm danh được lưu trữ trong liteSQL 
+</p>
+
+---
 # 🚗 Hệ Thống Quản Lý Bãi Đỗ Xe với Nhận Diện Biển Số
 
 Hệ thống quản lý bãi đỗ xe tích hợp nhận diện biển số xe tự động, với giao diện web hiện đại để quản lý bãi đỗ một cách dễ dàng và hiệu quả.
@@ -107,7 +129,6 @@ python clear_history.py
 
 ## ⚠️ Lưu Ý
 - **ESP32-CAM không cắm như sơ đồ mạch**, mà **cắm thẳng vào laptop**.
-- Hướng dẫn chi tiết cách lắp đặt xem tại: [YouTube](https://youtu.be/H5HNCOP2qdE?si=peXyiEF69265GkOV)
 - **Code Arduino đã được cập nhật và sửa lỗi**, không chạy theo video sẽ gặp lỗi.
 
 ---
@@ -187,7 +208,6 @@ python add_record.py
 
 ### ⚠️ Notes
 - **ESP32-CAM should be directly connected to the laptop**, not as per the circuit diagram.
-- Detailed installation guide: [YouTube](https://youtu.be/H5HNCOP2qdE?si=peXyiEF69265GkOV)
 - **Updated Arduino code provided**, do not use the video’s code.
 
 🚀 **Develop and improve this model for a smarter future!** 🚀
