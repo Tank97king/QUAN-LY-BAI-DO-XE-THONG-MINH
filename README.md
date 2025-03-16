@@ -1,4 +1,4 @@
-![logoDaiNam](https://github.com/user-attachments/assets/8ab299c0-ca53-42bb-8909-c821bcd71db7)<h1 align="center">🚗 HỆ THỐNG QUẢN LÝ BÃI ĐỖ XE VỚI NHẬN DIỆN BIỂN SỐ </h1>
+<h1 align="center">🚗 HỆ THỐNG QUẢN LÝ BÃI ĐỖ XE VỚI NHẬN DIỆN BIỂN SỐ </h1>
 
 <div align="center">
 
