@@ -1,4 +1,4 @@
-<h1 align="center">🚗 HỆ THỐNG QUẢN LÝ BÃI ĐỖ XE VỚI NHẬN DIỆN BIỂN SỐ </h1>
+![logoDaiNam](https://github.com/user-attachments/assets/8ab299c0-ca53-42bb-8909-c821bcd71db7)<h1 align="center">🚗 HỆ THỐNG QUẢN LÝ BÃI ĐỖ XE VỚI NHẬN DIỆN BIỂN SỐ </h1>
 
 <div align="center">
 
@@ -20,10 +20,6 @@
 </p>
 
 ---
-# 🚗 Hệ Thống Quản Lý Bãi Đỗ Xe với Nhận Diện Biển Số
-
-Hệ thống quản lý bãi đỗ xe tích hợp nhận diện biển số xe tự động, với giao diện web hiện đại để quản lý bãi đỗ một cách dễ dàng và hiệu quả.
-
 ---
 
 ## 🌟 Tính Năng
