@@ -3,8 +3,6 @@
 <div align="center">
 
 <p align="center">
-  <img src="images/logoDaiNam.png" alt="DaiNam University Logo" width="200"/>
-  <img src="images/LogoAIoTLab.png" alt="AIoTLab Logo" width="170"/>
 </p>
 
 [![Made by AIoTLab](https://img.shields.io/badge/Made%20by%20AIoTLab-blue?style=for-the-badge)](https://www.facebook.com/DNUAIoTLab)
@@ -13,7 +11,6 @@
 
 </div>
 
-<h2 align="center">🚗 HỆ THỐNG QUẢN LÝ BÃI ĐỖ XE </h2>
 
 <p align="left">
   Hệ thống quản lý bãi đỗ xe tích hợp nhận diện biển số xe tự động, với giao diện web hiện đại để quản lý bãi đỗ một cách dễ dàng và hiệu quả. Dữ liệu điểm danh được lưu trữ trong liteSQL 
