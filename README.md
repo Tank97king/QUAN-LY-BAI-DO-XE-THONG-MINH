@@ -5,7 +5,8 @@
 <p align="center">
 </p>
 <p align="center">
-  <img src="[images/logoDaiNam.png](https://github.com/Tank97king/QUAN-LY-BAI-DO-XE-THONG-MINH/blob/main/QU%E1%BA%A2N%20L%C3%9D%20B%C3%83I%20%C4%90%E1%BB%96%20XE%20TH%C3%94NG%20MINH/logoDaiNam.png)" alt="DaiNam University Logo" width="200"/>
+  <img src="[![logoDaiNam](https://github.com/user-attachments/assets/995c46bb-81dc-4d6b-a5d6-fae9d1fd9986)
+)" alt="DaiNam University Logo" width="200"/>
   <img src="images/LogoAIoTLab.png" alt="AIoTLab Logo" width="170"/>
 </p>
 
