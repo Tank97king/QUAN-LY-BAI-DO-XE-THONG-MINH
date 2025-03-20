@@ -41,13 +41,13 @@
 - Các thư viện Python cần thiết:
   ```bash
   pip install Flask EasyOCR OpenCV-Python NumPy Pillow
-Flask==2.3.3
-Pillow==10.2.0
-numpy==1.26.4
-opencv-python==4.9.0.80
-torch==2.2.0
-torchvision==0.17.0
-easyocr==1.7.1 
+  Flask==2.3.3
+  Pillow==10.2.0
+  numpy==1.26.4
+  opencv-python==4.9.0.80
+  torch==2.2.0
+  torchvision==0.17.0
+  easyocr==1.7.1 
   ```
 
 ---
