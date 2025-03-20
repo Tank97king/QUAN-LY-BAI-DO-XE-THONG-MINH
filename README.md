@@ -5,7 +5,7 @@
 <p align="center">
 </p>
 <p align="center">
-  <img src="QUẢN LÝ BÃI ĐỖ XE THÔNG MINH/images/logoDaiNam.png" alt="DaiNam University Logo" width="200"/>
+  <img src="QUAN-LY-BAI-DO-XE-THONG-MINH/logoDaiNam.png" alt="DaiNam University Logo" width="200"/>
   <img src="images/LogoAIoTLab.png" alt="AIoTLab Logo" width="170"/>
 </p>
 
