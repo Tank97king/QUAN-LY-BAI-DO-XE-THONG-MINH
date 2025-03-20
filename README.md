@@ -149,7 +149,7 @@ python clear_history.py
 ---
 ## 📝 Bản quyền
 
-© 2025 Đinh Thế Thành-Nhóm 1-CNTT_16-01, Khoa Công nghệ Thông tin, Đại học Đại Nam. Mọi quyền được bảo lưu.
+© 2025 Đinh Thế Thành-Nhóm 3-CNTT_16-01, Khoa Công nghệ Thông tin, Đại học Đại Nam. Mọi quyền được bảo lưu.
 <div align="center">
 Được thực hiện bởi 💻 Nhóm 1-CNTT_16-01 tại Đại học Đại Nam
 
