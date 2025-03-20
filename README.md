@@ -5,8 +5,7 @@
 <p align="center">
 </p>
 <p align="center">
-  <img src="[![logoDaiNam](https://github.com/user-attachments/assets/995c46bb-81dc-4d6b-a5d6-fae9d1fd9986)
-)" alt="DaiNam University Logo" width="200"/>
+  <img src="QUẢN LÝ BÃI ĐỖ XE THÔNG MINH/images/logoDaiNam.png" alt="DaiNam University Logo" width="200"/>
   <img src="images/LogoAIoTLab.png" alt="AIoTLab Logo" width="170"/>
 </p>
 
