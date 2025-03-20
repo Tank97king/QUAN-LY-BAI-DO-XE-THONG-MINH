@@ -26,7 +26,15 @@
 
 
 ---
+## 🌟POTER
+</p>
+<p align="center">
+<img src="QUẢN LÝ BÃI ĐỖ XE THÔNG MINH/Poster_CNTT16-01_Aiot_3.pdf" alt="DaiNam University Logo" width="700"/>
+</p>
 
+
+
+---
 ## 🌟 Tính Năng
 ✅ Nhận diện biển số xe tự động với EasyOCR  
 ✅ Quản lý **6 vị trí đỗ xe**  
