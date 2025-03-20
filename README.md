@@ -17,12 +17,14 @@
 </p>
 
 ---
-Sơ Đồ Kết Nối Mạch
+## 🌟 Sơ Đồ Kết Nối Mạch
 </p>
 <p align="center">
 <img src="QUẢN LÝ BÃI ĐỖ XE THÔNG MINH/Sơ đồ mạch của dự án.png" alt="DaiNam University Logo" width="700"/>
-
 </p>
+
+
+
 ---
 
 ## 🌟 Tính Năng
